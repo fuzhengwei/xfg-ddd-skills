@@ -1,9 +1,21 @@
 ---
 name: ddd-skills
-description: "Use this skill whenever you need to design or implement software using Domain-Driven Design (DDD) with Hexagonal Architecture. Triggers include: 'DDD', 'domain-driven design', 'hexagonal architecture', 'ports and adapters', '六边形架构', '领域驱动设计'. Use when creating Entity, Aggregate, Value Object, Repository, Domain Service, or implementing business logic. Also use when setting up project structure for DDD, implementing rich domain models, or need guidance on layer responsibilities (Trigger/API/Case/Domain/Infrastructure). Do NOT use for simple CRUD applications, microservices without domain complexity, or general Spring Boot patterns without DDD."
+version: 2.0.0
+description: "Use this skill whenever you need to design or implement software using Domain-Driven Design (DDD) with Hexagonal Architecture. Triggers include 'DDD', 'domain-driven design', 'hexagonal architecture', 'ports and adapters', '六边形架构', '领域驱动设计'. Use when creating Entity, Aggregate, Value Object, Repository, Domain Service, or implementing business logic. Also use when setting up project structure for DDD, implementing rich domain models, or need guidance on layer responsibilities (Trigger/API/Case/Domain/Infrastructure). Do not use for simple CRUD applications, microservices without domain complexity, or general Spring Boot patterns without DDD."
+author: xiaofuge
 license: MIT
+triggers:
+  - "DDD"
+  - "六边形架构"
+  - "domain-driven design"
+  - "领域驱动设计"
+  - "ports and adapters"
+  - "创建 Entity"
+  - "创建聚合根"
+metadata:
+  openclaw:
+    emoji: "🏗️"
 ---
-
 # DDD Hexagonal Architecture
 
 Design and implement software using Domain-Driven Design with Hexagonal Architecture. This skill provides patterns, templates, and best practices for building maintainable domain-centric applications.
