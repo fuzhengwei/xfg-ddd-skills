@@ -31,32 +31,47 @@ Design and implement software using Domain-Driven Design with Hexagonal Architec
 
 **脚本支持系统**: Windows (Git Bash/MSYS2)、Mac (macOS)、Linux，自动检测并适配。
 
+**⚠️ 环境提醒**: 建议提前安装 JDK 17+ 和 Maven 3.8.*，脚本启动时会自动检测并给出各平台安装指引，未安装也可继续但可能导致生成失败。
+
 **流程:**
 
-1. **必须询问用户以下 4 个参数**（逐一询问，用户跳过才用默认值）:
+1. **第一步：选择项目生成目录**
 
-   | 参数 | 说明 | 默认值（仅用户不输入时使用） | 示例 |
-   |------|------|------------------------------|------|
-   | GroupId | Maven 坐标的 groupId，标识组织或公司 | `com.yourcompany` | `cn.bugstack` |
-   | ArtifactId | 项目模块唯一标识名称 | `your-project-name` | `order-system` |
-   | Version | 项目版本号 | `1.0.0-SNAPSHOT` | `1.0.0-RELEASE` |
-   | Package | Java 代码根包名 | 从 GroupId + ArtifactId 推导 | `cn.bugstack.order` |
+   脚本会自动扫描可写目录（当前工作目录、用户 home 目录、home/workspace、home/Documents/projects 等），列出选项供用户选择，或输入自定义绝对路径。
 
-   > ⚠️ **必须询问并告知用途和示例**，不得跳过；若用户不输入则使用默认值。
+   示例：
+   ```
+   📂 选择项目生成目录
+   ──────────────────────────────
+   1) /Users/xxx/projects
+   2) /Users/xxx/Documents
+   3) /home/xxx/workspace
+   4) 自定义路径（直接输入路径）
 
-2. **脚本执行方式**（自动检测当前 OS，无需手动选择）:
-   ```bash
-   bash scripts/create-ddd-project.sh
-   # Windows Git Bash / MSYS2、Mac、Linux 均直接运行，无需额外配置
+   直接回车 = 选择 [1]
    ```
 
-3. **脚本会自动**:
-   - 检测 Java + Maven 是否安装，缺失则给出各平台安装指引后退出
-   - 提示确认配置（可配置为跳过确认直接执行）
-   - 执行 Maven Archetype 生成项目
-   - 输出项目位置和下一步操作提示
+2. **第二步：填写项目配置**（逐一询问，直接回车使用默认值）
 
-> 💡 如果用户已在项目目录下，可直接运行脚本；AI 负责引导用户填写参数并告知如何执行。
+   | 参数 | 说明 | 默认值 | 示例 |
+   |------|------|--------|------|
+   | GroupId | Maven 坐标 groupId，标识组织或公司 | `com.yourcompany` | `cn.bugstack` |
+   | ArtifactId | 项目模块唯一标识名称 | `your-project-name` | `order-system` |
+   | Version | 项目版本号 | `1.0.0-SNAPSHOT` | `1.0.0-RELEASE` |
+   | Package | Java 代码根包名 | 自动从 GroupId + ArtifactId 推导 | `cn.bugstack.order` |
+   | Archetype 版本 | 脚手架模板版本 | `1.3` | - |
+
+3. **第三步：确认并生成**
+
+   显示所有配置，确认后执行 Maven Archetype 生成项目。
+
+**脚本执行方式**（在 `ddd-skills-v2` 项目根目录下运行）:
+```bash
+bash scripts/create-ddd-project.sh
+```
+
+> ⚠️ **必须先 cd 到 `ddd-skills-v2` 项目目录下再执行**，脚本会自动定位自身路径。
+> AI 负责引导用户选择目录、填写参数，无需手动拼凑 Maven 命令。
 
 ---
 
