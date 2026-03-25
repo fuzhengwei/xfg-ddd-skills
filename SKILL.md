@@ -27,47 +27,38 @@ Design and implement software using Domain-Driven Design with Hexagonal Architec
 
 ### 创建 DDD 项目
 
-当用户需要创建新的 DDD 项目时，**询问用户以下配置参数**，然后执行 Maven Archetype 命令：
+当用户说"创建 DDD 项目"、"新建项目"、"创建项目"、"创建ddd项目"时，**必须使用 `scripts/create-ddd-project.sh` 脚本**。
 
-**询问参数：**
+**脚本支持系统**: Windows (Git Bash/MSYS2)、Mac (macOS)、Linux，自动检测并适配。
 
-| 参数 | 说明 | 默认值 | 示例 |
-|------|------|--------|------|
-| GroupId | Maven 坐标的 groupId，用于标识组织或公司 | `com.yourcompany` | `cn.bugstack` |
-| ArtifactId | 项目模块的唯一标识名称 | `your-project-name` | `order-system` |
-| Version | 项目的版本号 | `1.0.0-SNAPSHOT` | `1.0.0-RELEASE` |
-| Package | Java 代码的根包名（默认同 groupId） | 同 groupId | `cn.bugstack.order` |
+**流程:**
 
-> 💡 用户不提供时使用默认值
+1. **必须询问用户以下 4 个参数**（逐一询问，用户跳过才用默认值）:
 
-**Maven Archetype 命令模板：**
+   | 参数 | 说明 | 默认值（仅用户不输入时使用） | 示例 |
+   |------|------|------------------------------|------|
+   | GroupId | Maven 坐标的 groupId，标识组织或公司 | `com.yourcompany` | `cn.bugstack` |
+   | ArtifactId | 项目模块唯一标识名称 | `your-project-name` | `order-system` |
+   | Version | 项目版本号 | `1.0.0-SNAPSHOT` | `1.0.0-RELEASE` |
+   | Package | Java 代码根包名 | 从 GroupId + ArtifactId 推导 | `cn.bugstack.order` |
 
-```bash
-mvn archetype:generate \
-  -DarchetypeGroupId=io.github.fuzhengwei \
-  -DarchetypeArtifactId=ddd-scaffold-lite-jdk17 \
-  -DarchetypeVersion=1.3 \
-  -DarchetypeRepository=https://maven.xiaofuge.cn/ \
-  -DgroupId={用户输入或默认值} \
-  -DartifactId={用户输入或默认值} \
-  -Dversion={用户输入或默认值} \
-  -Dpackage={用户输入或默认值} \
-  -B
-```
+   > ⚠️ **必须询问并告知用途和示例**，不得跳过；若用户不输入则使用默认值。
 
-**参数说明：**
+2. **脚本执行方式**（自动检测当前 OS，无需手动选择）:
+   ```bash
+   bash scripts/create-ddd-project.sh
+   # Windows Git Bash / MSYS2、Mac、Linux 均直接运行，无需额外配置
+   ```
 
-| 参数 | 用途 |
-|------|------|
-| `-DarchetypeGroupId` | 脚手架模板的 groupId |
-| `-DarchetypeArtifactId` | 脚手架模板名称 |
-| `-DarchetypeVersion` | 脚手架版本 |
-| `-DarchetypeRepository` | Maven 私服地址 |
-| `-DgroupId` | 项目组织标识 |
-| `-DartifactId` | 项目名称 |
-| `-Dversion` | 项目版本 |
-| `-Dpackage` | Java 根包名 |
-| `-B` | 批量模式，不交互 |
+3. **脚本会自动**:
+   - 检测 Java + Maven 是否安装，缺失则给出各平台安装指引后退出
+   - 提示确认配置（可配置为跳过确认直接执行）
+   - 执行 Maven Archetype 生成项目
+   - 输出项目位置和下一步操作提示
+
+> 💡 如果用户已在项目目录下，可直接运行脚本；AI 负责引导用户填写参数并告知如何执行。
+
+---
 
 ## Quick Reference
 
