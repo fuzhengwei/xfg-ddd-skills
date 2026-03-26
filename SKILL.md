@@ -582,7 +582,7 @@ services:
     networks:
       - my-network
 
-  # Redis
+  # Redis 6.2
   redis:
     image: registry.cn-hangzhou.aliyuncs.com/xfg-studio/redis:6.2
     container_name: redis
@@ -711,16 +711,79 @@ logging:
 
 所有镜像已同步到阿里云，使用前缀 `registry.cn-hangzhou.aliyuncs.com/xfg-studio/`
 
-| 镜像 | 用途 |
-|------|------|
-| openjdk:17-jdk-slim | Java 17 运行环境 |
-| mysql:8.0.32 | MySQL 8.0 数据库 |
-| redis:6.2 | Redis 缓存 |
-| redis:7.2 | Redis 7.x |
-| redis-commander:0.8.0 | Redis 可视化管理 |
-| phpmyadmin:5.2.1 | MySQL 可视化管理 |
-| rabbitmq:3.12.9 | RabbitMQ 消息队列 |
-| nacos-server:v2.2.3-slim | Nacos 注册中心 |
+> 📦 镜像来源：[docker-image-pusher](https://github.com/fuzhengwei/docker-image-pusher)
+> 添加新镜像：在 images.txt 添加镜像名，等待1分钟同步
+
+### 常用镜像速查表
+
+| 原始镜像 | 阿里云加速地址 | 用途 |
+|---------|--------------|------|
+| **JDK/Java** | | |
+| openjdk:8-jre-slim | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/openjdk:8-jre-slim` | Java 8 运行环境 |
+| openjdk:8-jdk | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/openjdk:8-jdk` | Java 8 开发镜像 |
+| openjdk:17-jdk-slim | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/openjdk:17-jdk-slim` | Java 17 运行环境 |
+| openjdk:17-ea-17-jdk-slim-buster | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/openjdk:17-ea-17-jdk-slim-buster` | Java 17 EA 版本 |
+| **数据库** | | |
+| mysql:8.0.32 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/mysql:8.0.32` | MySQL 8.0 |
+| mysql:8.4.4 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/mysql:8.4.4` | MySQL 8.4 |
+| postgres:14.18 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/postgres:14.18` | PostgreSQL 14 |
+| pgvector/pgvector:pg17 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/pgvector:pg17` | PostgreSQL 向量库 |
+| **缓存** | | |
+| redis:6.2 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/redis:6.2` | Redis 6.2 |
+| redis:7.2 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/redis:7.2` | Redis 7.2 |
+| redis:7.4.13 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/redis:7.2/7.4.13` | Redis 7.4 |
+| **数据库管理** | | |
+| phpmyadmin:5.2.1 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/phpmyadmin:5.2.1` | MySQL Web 管理 |
+| redis-commander:0.8.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/redis-commander:0.8.0` | Redis Web 管理 |
+| dpage/pgadmin4:9.1.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/pgadmin4:9.1.0` | PostgreSQL Web 管理 |
+| **消息队列** | | |
+| rabbitmq:3.12.9 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/rabbitmq:3.12.9` | RabbitMQ |
+| rocketmq:5.1.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/rocketmq:5.1.0` | RocketMQ |
+| kafka:3.7.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/kafka:3.7.0` | Kafka |
+| kafka-eagle:3.0.2 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/kafka-eagle:3.0.2` | Kafka Eagle |
+| **注册中心/配置中心** | | |
+| nacos-server:v2.2.3-slim | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/nacos-server:v2.2.3-slim` | Nacos 2.2.3 |
+| nacos-server:v3.1.1 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/nacos-server:v3.1.1` | Nacos 3.1.1 |
+| **Web 服务器** | | |
+| nginx:1.25.1 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/nginx:1.25.1` | Nginx 1.25 |
+| nginx:1.28.0-alpine | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/nginx:1.28.0-alpine` | Nginx 1.28 Alpine |
+| **任务调度** | | |
+| xxl-job-admin:2.4.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/xxl-job-admin:2.4.0` | XXL-Job 管理端 |
+| xxl-job-aarch64:2.4.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/xxl-job-aarch64:2.4.0` | XXL-Job ARM 版本 |
+| **监控** | | |
+| prometheus:2.47.2 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/prometheus:2.47.2` | Prometheus |
+| grafana:10.2.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/grafana:10.2.0` | Grafana |
+| skywalking-oap-server:9.3.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/skywalking-oap-server:9.3.0` | SkyWalking OAP |
+| skywalking-ui:9.3.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/skywalking-ui:9.3.0` | SkyWalking UI |
+| **搜索引擎** | | |
+| elasticsearch:7.17.14 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/elasticsearch:7.17.14` | Elasticsearch |
+| kibana:7.17.14 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/kibana:7.17.14` | Kibana |
+| **Node** | | |
+| node:18-alpine | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/node:18-alpine` | Node 18 |
+| node:20-alpine | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/node:20-alpine` | Node 20 |
+| **AI/工具** | | |
+| ollama/ollama:0.5.10 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/ollama:0.5.10` | Ollama |
+| n8nio/n8n:1.88.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/n8n:1.88.0` | N8N 工作流 |
+| **其他** | | |
+| alpine:3.20.1 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/alpine:3.20.1` | Alpine Linux |
+| portainer:latest | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/portainer:latest` | Docker 可视化管理 |
+| jenkins:2.439 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/jenkins:2.439` | Jenkins |
+| sentinel-dashboard:1.8.7 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/sentinel-dashboard:1.8.7` | Sentinel 流量控制 |
+| canal-server:v1.1.6 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/canal-server:v1.1.6` | Canal |
+| zookeeper:3.9.0 | `registry.cn-hangzhou.aliyuncs.com/xfg-studio/zookeeper:3.9.0` | Zookeeper |
+
+### 拉取镜像示例
+
+```bash
+# 拉取 MySQL
+docker pull registry.cn-hangzhou.aliyuncs.com/xfg-studio/mysql:8.0.32
+
+# 拉取 Redis
+docker pull registry.cn-hangzhou.aliyuncs.com/xfg-studio/redis:6.2
+
+# 拉取 Java 17
+docker pull registry.cn-hangzhou.aliyuncs.com/xfg-studio/openjdk:17-jdk-slim
+```
 
 ---
 
